@@ -7,7 +7,7 @@ GitHub webhook → Mastra server (MCP server) → MCP events → Octocat app (MC
 ```
 
 - **Caller:** GitHub. Starring the repo, or opening and closing PRs and issues, sends a webhook.
-- **MCP server:** this Mastra project. A custom route receives the webhook and starts a workflow, and the workflow emits an MCP event with `server.events.emit()`.
+- **MCP server:** this Mastra project. A custom route in `src/mastra/index.ts` receives the webhook and starts a workflow, and the workflow emits an MCP event with `server.events.emit()`.
 - **Subscriber:** the Electron app in `src/octocat-app`. It uses `MCPClient` to subscribe to each event and animates the Octocat when one arrives.
 
 ## Events
