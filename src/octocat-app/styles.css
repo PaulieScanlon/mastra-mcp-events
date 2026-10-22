@@ -48,7 +48,7 @@ main::before {
   position: relative;
   -webkit-app-region: drag;
   width: 282px;
-  height: 315px;
+  height: 345px;
   margin-top: 12px;
 }
 
@@ -166,7 +166,7 @@ main::before {
 
 .feed {
   position: fixed;
-  top: 190px;
+  top: 220px;
   left: 335px;
   width: 265px;
   pointer-events: none;
