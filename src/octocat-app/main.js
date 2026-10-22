@@ -46,6 +46,8 @@ const createWindow = () => {
     alwaysOnTop: true,
     webPreferences: { contextIsolation: true, preload: path.join(dirname, "preload.cjs") }
   });
+  window.setAlwaysOnTop(true, "screen-saver");
+  window.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true });
   window.loadFile(path.join(dirname, "index.html"));
   setInterval(() => {
     if (window.isDestroyed()) {
