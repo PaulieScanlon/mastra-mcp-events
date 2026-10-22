@@ -358,6 +358,18 @@ const fakeEvent = (name) => {
   return item;
 };
 
+const tests = document.querySelector(".tests");
+
+window.addEventListener("keydown", (event) => {
+  if (event.metaKey && event.key.toLowerCase() === "k") {
+    event.preventDefault();
+    tests.hidden = !tests.hidden;
+    if (!tests.hidden) {
+      gsap.from(tests.children, { y: 8, opacity: 0, duration: 0.3, stagger: 0.03, ease: "power2.out" });
+    }
+  }
+});
+
 document.querySelectorAll(".tests button").forEach((button) => {
   button.addEventListener("click", () => {
     const name = button.dataset.event;

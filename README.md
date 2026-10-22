@@ -64,6 +64,6 @@ Add a webhook to the repo under **Settings → Webhooks**:
 
 ## Octocat app
 
-On startup the app fetches the real star, open PR, and open issue counts from the GitHub API, then keeps them updated from MCP events. It fetches the counts again whenever a subscription reconnects, so a missed event can't leave them wrong. The test buttons fire each animation without GitHub.
+On startup the app fetches the real star, open PR, and open issue counts from the GitHub API, then keeps them updated from MCP events. It fetches the counts again whenever a subscription reconnects, so a missed event can't leave them wrong. The app also has test buttons that fire each animation without GitHub. They're hidden by default: click the app to focus it, then press `⌘K` to show or hide them.
 
 Octocat artwork from [myoctocat.com](https://myoctocat.com).

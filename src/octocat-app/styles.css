@@ -224,6 +224,10 @@ main::before {
   margin-top: 12px;
 }
 
+.tests[hidden] {
+  display: none;
+}
+
 .tests button {
   padding: 6px 10px;
   border: 1px solid var(--border);
