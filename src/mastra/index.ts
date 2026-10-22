@@ -1,6 +1,7 @@
 import { Mastra } from '@mastra/core/mastra';
 import { MastraCompositeStore } from '@mastra/core/storage';
 import { registerApiRoute } from '@mastra/core/server';
+import { SpanType } from '@mastra/core/observability';
 import { LibSQLStore } from '@mastra/libsql';
 import { DuckDBStore } from '@mastra/duckdb';
 import { PinoLogger } from '@mastra/loggers';
@@ -87,6 +88,7 @@ export const mastra = new Mastra({
       default: {
         serviceName: 'mcp-server',
         exporters: [new MastraStorageExporter()],
+        excludeSpanTypes: [SpanType.MCP_SERVER_REQUEST],
       },
     },
   }),
