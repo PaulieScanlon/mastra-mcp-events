@@ -378,7 +378,7 @@ document.querySelectorAll(".tests button").forEach((button) => {
 });
 
 const github = async (path) => {
-  const response = await fetch(`https://api.github.com/${path}`, { headers: { Accept: "application/vnd.github+json" } });
+  const response = await fetch(`https://api.github.com/${path}`, { cache: "no-store", headers: { Accept: "application/vnd.github+json" } });
   if (!response.ok) {
     throw new Error(`GitHub ${response.status} for ${path}`);
   }
