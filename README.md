@@ -33,20 +33,20 @@ src/
 
 ## Run it
 
-Start the MCP server:
+Install dependencies for both apps:
 
 ```bash
 npm install
+npm install --prefix src/octocat-app
+```
+
+Start the MCP server and the Octocat app together:
+
+```bash
 npm run dev
 ```
 
-Start the Octocat app:
-
-```bash
-cd src/octocat-app
-npm install
-npm start
-```
+Run either on its own with `npm run mastra:dev` or `npm run octocat:dev`.
 
 Forward GitHub webhooks to the local server:
 

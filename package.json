@@ -5,7 +5,9 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-    "dev": "mastra dev",
+    "dev": "concurrently -n mastra,octocat -c blue,magenta \"npm:mastra:dev\" \"npm:octocat:dev\"",
+    "mastra:dev": "mastra dev",
+    "octocat:dev": "npm --prefix src/octocat-app start",
     "build": "mastra build",
     "start": "mastra start"
   },
@@ -27,6 +29,7 @@
   },
   "devDependencies": {
     "@types/node": "latest",
+    "concurrently": "^10.0.6",
     "mastra": "1.35.0",
     "typescript": "^6.0.3"
   }
