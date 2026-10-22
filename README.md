@@ -7,27 +7,27 @@ GitHub webhook → Mastra server (MCP server) → MCP events → Octocat app (MC
 ```
 
 - **Caller:** GitHub. Starring the repo, or opening and closing PRs and issues, sends a webhook.
-- **MCP server:** this Mastra project. A custom route in `src/mastra/index.ts` receives the webhook and starts a workflow, and the workflow emits an MCP event with `server.events.emit()`.
+- **MCP server:** this Mastra project. A custom route in `src/mastra/index.ts` receives the webhook and emits an MCP event with `server.events.emit()`.
 - **Subscriber:** the Electron app in `src/octocat-app`. It uses `MCPClient` to subscribe to each event and animates the Octocat when one arrives.
 
 ## Events
 
-| GitHub webhook | Workflow | MCP event |
-| --- | --- | --- |
-| `star.created` | `starRepoWorkflow` | `repo.starred` |
-| `star.deleted` | `unstarRepoWorkflow` | `repo.unstarred` |
-| `pull_request.opened` | `openPullRequestWorkflow` | `pull_request.opened` |
-| `pull_request.closed` | `closePullRequestWorkflow` | `pull_request.closed` |
-| `issues.opened` | `openIssueWorkflow` | `issue.opened` |
-| `issues.closed` | `closeIssueWorkflow` | `issue.closed` |
+| GitHub webhook | MCP event |
+| --- | --- |
+| `star.created` | `repo.starred` |
+| `star.deleted` | `repo.unstarred` |
+| `pull_request.opened` | `pull_request.opened` |
+| `pull_request.closed` | `pull_request.closed` |
+| `issues.opened` | `issue.opened` |
+| `issues.closed` | `issue.closed` |
 
-Each event is defined with `defineEvent()` in `src/mastra/mcp/server.ts`, and subscribers can filter by `repo`. Every workflow run is traced and logged, so each event shows up in Studio under Traces and Logs.
+Each event is defined with `defineEvent()` in `src/mastra/mcp/server.ts`, and subscribers can filter by `repo`. Each emit is traced as an MCP server span (`events/emit <event>`), so every event shows up in Studio under Traces. The subscriber's own `events/list` and `events/stream` requests are filtered out.
 
 ## Structure
 
 ```text
 src/
-├── mastra/        Mastra server: webhook route, workflows, MCP server with events
+├── mastra/        Mastra server: webhook route and MCP server with events
 └── octocat-app/   Electron app: MCPClient subscriber and Octocat animations
 ```
 
