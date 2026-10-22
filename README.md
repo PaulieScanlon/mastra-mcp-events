@@ -7,8 +7,8 @@ GitHub webhook → Mastra server (MCP server) → MCP events → Octocat app (MC
 ```
 
 - **Caller:** GitHub. Starring the repo, or opening and closing PRs and issues, sends a webhook.
-- **MCP server:** the Mastra project in `mcp-server`. A custom route receives the webhook and starts a workflow, and the workflow emits an MCP event with `server.events.emit()`.
-- **Subscriber:** the Electron app in `octocat-app`. It uses `MCPClient` to subscribe to each event and animates the Octocat when one arrives.
+- **MCP server:** this Mastra project. A custom route receives the webhook and starts a workflow, and the workflow emits an MCP event with `server.events.emit()`.
+- **Subscriber:** the Electron app in `src/octocat-app`. It uses `MCPClient` to subscribe to each event and animates the Octocat when one arrives.
 
 ## Events
 
@@ -21,14 +21,14 @@ GitHub webhook → Mastra server (MCP server) → MCP events → Octocat app (MC
 | `issues.opened` | `openIssueWorkflow` | `issue.opened` |
 | `issues.closed` | `closeIssueWorkflow` | `issue.closed` |
 
-Each event is defined with `defineEvent()` in `mcp-server/src/mastra/mcp/server.ts`, and subscribers can filter by `repo`. Every workflow run is traced and logged, so each event shows up in Studio under Traces and Logs.
+Each event is defined with `defineEvent()` in `src/mastra/mcp/server.ts`, and subscribers can filter by `repo`. Every workflow run is traced and logged, so each event shows up in Studio under Traces and Logs.
 
 ## Structure
 
 ```text
-mastra-mcp-events/
-├── mcp-server/   Mastra server: webhook route, workflows, MCP server with events
-└── octocat-app/  Electron app: MCPClient subscriber and Octocat animations
+src/
+├── mastra/        Mastra server: webhook route, workflows, MCP server with events
+└── octocat-app/   Electron app: MCPClient subscriber and Octocat animations
 ```
 
 ## Run it
@@ -36,7 +36,6 @@ mastra-mcp-events/
 Start the MCP server:
 
 ```bash
-cd mcp-server
 npm install
 npm run dev
 ```
@@ -44,7 +43,7 @@ npm run dev
 Start the Octocat app:
 
 ```bash
-cd octocat-app
+cd src/octocat-app
 npm install
 npm start
 ```
