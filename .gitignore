@@ -1,0 +1,9 @@
+node_modules
+.mastra
+.env
+*.db
+*.db-*
+*.duckdb
+*.duckdb.wal
+.DS_Store
+research.md
